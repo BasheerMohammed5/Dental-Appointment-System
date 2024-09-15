@@ -1,0 +1,79 @@
+﻿@model DentalAppointmentSystem.Models.PatientDetails
+@{
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-4">Add Patient Details</h2>
+
+    <form asp-controller="PatientDetails" asp-action="Create" method="post" enctype="multipart/form-data">
+        @Html.AntiForgeryToken()
+
+        <div class="form-group mb-3">
+            <label asp-for="Patient" class="form-label"></label>
+            <input asp-for="Patient" class="form-control" />
+            <span asp-validation-for="Patient" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="RegisterNumber" class="form-label"></label>
+            <input asp-for="RegisterNumber" class="form-control" />
+            <span asp-validation-for="RegisterNumber" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="Server" class="form-label"></label>
+            <input asp-for="Server" class="form-control" />
+            <span asp-validation-for="Server" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="Address" class="form-label"></label>
+            <textarea asp-for="Address" class="form-control"></textarea>
+            <span asp-validation-for="Address" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="Date" class="form-label"></label>
+            <input asp-for="Date" class="form-control" type="date" />
+            <span asp-validation-for="Date" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="ReturnDate" class="form-label"></label>
+            <input asp-for="ReturnDate" class="form-control" type="date" />
+            <span asp-validation-for="ReturnDate" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="Notes" class="form-label"></label>
+            <textarea asp-for="Notes" class="form-control"></textarea>
+            <span asp-validation-for="Notes" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="files" class="form-label"></label>
+            <input asp-for="files" class="form-control" type="file" />
+            <span asp-validation-for="files" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="BloodType" class="form-label"></label>
+            <input asp-for="BloodType" class="form-control" />
+            <span asp-validation-for="BloodType" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="Allergies" class="form-label"></label>
+            <input asp-for="Allergies" class="form-control" />
+            <span asp-validation-for="Allergies" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Add Patient Details</button>
+        <a asp-action="AdminIndex" asp-controller="PatientDetails" class="btn btn-secondary ms-2">Back to AdminIndex</a> <!-- زر العودة إلى AdminIndex -->
+    </form>
+</div>
+
+@section Scripts {
+        <partial name="_ValidationScriptsPartial" />
+}

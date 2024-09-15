@@ -1,0 +1,43 @@
+﻿@model DentalAppointmentSystem.Models.Testimonial
+@{
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<div class="container mt-4">
+    <h3 class="mb-4">Edit Testimonial</h3>
+
+    <form asp-action="Edit" enctype="multipart/form-data" method="post">
+        @Html.AntiForgeryToken() <!-- تضمين توكن CSRF -->
+        <input type="hidden" name="_method" value="PUT" />
+        <input type="hidden" asp-for="ID" />
+
+        <div class="form-group mb-3">
+            <label asp-for="Name" class="form-label"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="Text" class="form-label"></label>
+            <input asp-for="Text" class="form-control" />
+            <span asp-validation-for="Text" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="Rating" class="form-label"></label>
+            <input asp-for="Rating" class="form-control" />
+            <span asp-validation-for="Rating" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="Image" class="form-label"></label>
+            <input type="file" asp-for="Image" class="form-control" />
+            <span asp-validation-for="Image" class="text-danger"></span>
+        </div>
+
+        <div class="d-flex justify-content-between mt-4">
+            <button type="submit" class="btn btn-primary">Update Testimonial</button>
+            <a asp-action="AdminIndex" asp-controller="Testimonial" class="btn btn-secondary">Back to AdminIndex</a> <!-- زر العودة إلى AdminIndex -->
+        </div>
+    </form>
+</div>

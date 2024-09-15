@@ -1,0 +1,150 @@
+﻿    @model DentalAppointmentSystem.Models.Appointment
+@{
+    var services = ViewData["Services"] as List<DentalAppointmentSystem.Models.Service>;
+    var dentists = ViewData["Dentist"] as List<DentalAppointmentSystem.Models.Dentist>;
+}
+    <!-- Full Screen Search Start -->
+    <div class="modal fade" id="searchModal" tabindex="-1">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content" style="background: rgba(9, 30, 62, .7);">
+                <div class="modal-header border-0">
+                    <button type="button" class="btn bg-white btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body d-flex align-items-center justify-content-center">
+                    <div class="input-group" style="max-width: 600px;">
+                        <input type="text" class="form-control bg-transparent border-primary p-3" placeholder="Type search keyword">
+                        <button class="btn btn-primary px-4"><i class="bi bi-search"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Full Screen Search End -->
+
+
+    <!-- Hero Start -->
+    <div class="container-fluid bg-primary py-5 hero-header mb-5">
+        <div class="row py-3">
+            <div class="col-12 text-center">
+                <h1 class="display-3 text-white animated zoomIn">Appointment</h1>
+                <a href="" class="h4 text-white">Home</a>
+                <i class="far fa-circle text-white px-2"></i>
+                <a href="" class="h4 text-white">Appointment</a>
+            </div>
+        </div>
+    </div>
+    <!-- Hero End -->
+
+
+    <!-- Appointment Start -->
+    <div class="container-fluid bg-primary bg-appointment mb-5 wow fadeInUp" data-wow-delay="0.1s" style="margin-top: 90px;">
+        <div class="container">
+            <div class="row gx-5">
+                <div class="col-lg-6 py-5">
+                    <div class="py-5">
+                        <h1 class="display-5 text-white mb-4">We Are A Certified and Award Winning Dental Clinic You Can Trust</h1>
+                        <p class="text-white mb-0">Eirmod sed tempor lorem ut dolores. Aliquyam sit sadipscing kasd ipsum. Dolor ea et dolore et at sea ea at dolor, justo ipsum duo rebum sea invidunt voluptua. Eos vero eos vero ea et dolore eirmod et. Dolores diam duo invidunt lorem. Elitr ut dolores magna sit. Sea dolore sanctus sed et. Takimata takimata sanctus sed.</p>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="appointment-form h-100 d-flex flex-column justify-content-center text-center p-5 wow zoomIn" data-wow-delay="0.6s">
+                        <h1 class="text-white mb-4">Make Appointment</h1>
+
+                       
+                        <form asp-action="Create" method="post">
+    <div class="row g-3">
+        <div class="col-12 col-sm-6">
+            <select class="form-select bg-light border-0" name="ServerId" style="height: 55px;" required>
+                <option selected disabled>Select A Service</option>
+                                    @if (services != null && services.Count > 0)
+                                    {
+                                        foreach (var service in services)
+                                        {
+                                <option value="@service.ID">@service.Name</option>
+                                        }
+                                    }
+                                    else
+                                    {
+                        <option disabled>No services available</option>
+                                    }
+            </select>
+        </div>
+        <div class="col-12 col-sm-6">
+            <select class="form-select bg-light border-0" name="DentistId" style="height: 55px;" required>
+                <option selected disabled>Select Doctor</option>
+                                    @if (dentists != null && dentists.Count > 0)
+                                    {
+                                        foreach (var dentist in dentists)
+                                        {
+                                <option value="@dentist.ID">@dentist.Name</option>
+                                        }
+                                    }
+                                    else
+                                    {
+                        <option disabled>No dentists available</option>
+                                    }
+            </select>
+        </div>
+        <div class="col-12 col-sm-6">
+            <input type="text" name="PatientName" class="form-control bg-light border-0" placeholder="Your Name" style="height: 55px;" required>
+        </div>
+        <div class="col-12 col-sm-6">
+            <input type="text" name="ReasonForVisit" class="form-control bg-light border-0" placeholder="Reason For Visit" style="height: 55px;" required>
+        </div>
+        <div class="col-12 col-sm-6">
+            <input type="text" name="Phone" class="form-control bg-light border-0" placeholder="Phone" style="height: 55px;" required>
+        </div>
+        <div class="col-12 col-sm-6">
+            <input type="email" name="Email" class="form-control bg-light border-0" placeholder="Your Email" style="height: 55px;" required>
+        </div>
+        <div class="col-12 col-sm-6">
+            <div class="date" id="date1" data-target-input="nearest">
+                <input type="text"
+                       class="form-control bg-light border-0 datetimepicker-input"
+                       placeholder="Appointment Date" name="Date" data-target="#date1" data-toggle="datetimepicker" style="height: 55px;" required>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6">
+            <div class="time" id="time1" data-target-input="nearest">
+    <input type="text" asp-for="Time" 
+           class="form-control bg-light border-0 datetimepicker-input" 
+           placeholder="Appointment Time" 
+           data-target="#time1" 
+           data-toggle="datetimepicker" 
+           style="height: 55px;" 
+           required />
+</div>
+
+
+            @* <div class="time" id="time1" data-target-input="nearest">
+                <input type="text"
+                       class="form-control bg-light border-0 datetimepicker-input"
+                       placeholder="Appointment Time" name="Time" data-target="#time1" data-toggle="datetimepicker" style="height: 55px;" required>
+            </div> *@
+        </div>
+        <div class="col-12">
+            <button class="btn btn-dark w-100 py-3" type="submit">Make Appointment</button>
+        </div>
+    </div>
+</form>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Appointment End -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/js/tempusdominus-bootstrap-4.min.js"></script>
+
+<script>
+    $(function () {
+        $('#time1').datetimepicker({
+            format: 'HH:mm', // تحديد التنسيق كوقت فقط
+            stepping: 15,    // التدرج بالوقت (مثلاً 15 دقيقة)
+            useCurrent: false
+        });
+    });
+</script>

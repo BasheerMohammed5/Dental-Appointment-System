@@ -1,0 +1,27 @@
+﻿@model DentalAppointmentSystem.Models.Appointment
+@{
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg">
+                <div class="card-header bg-danger text-white">
+                    <h3 class="mb-0">Confirm Deletion</h3>
+                </div>
+                <div class="card-body">
+                    <h5 class="text-center">Are you sure you want to delete this Appointment?</h5>
+                    <form asp-action="DeleteConfirmed" method="post">
+                        <input type="hidden" name="_method" value="DELETE" />
+                        <input type="hidden" asp-for="ID" />
+                        <div class="text-center mt-4">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                            <a asp-action="AdminIndex" asp-controller="Appointment" class="btn btn-secondary ms-3">Back to Dashboard</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

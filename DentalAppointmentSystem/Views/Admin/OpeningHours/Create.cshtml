@@ -1,0 +1,55 @@
+﻿@model DentalAppointmentSystem.Models.OpeningHours
+
+@{
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+    ViewData["Title"] = "Add New Opening Hours";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-4">@ViewData["Title"]</h2>
+
+    <form asp-action="Create" method="post" class="form-horizontal">
+        @Html.AntiForgeryToken()
+
+        <div class="form-group mb-3">
+            <label asp-for="Day" class="form-label"></label>
+            <input asp-for="Day" class="form-control" />
+            <span asp-validation-for="Day" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="From" class="form-label"></label>
+            <input asp-for="From" type="time" class="form-control" />
+            <span asp-validation-for="From" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="To" class="form-label"></label>
+            <input asp-for="To" type="time" class="form-control" />
+            <span asp-validation-for="To" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="From2" class="form-label"></label>
+            <input asp-for="From2" type="time" class="form-control" />
+            <span asp-validation-for="From2" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="To2" class="form-label"></label>
+            <input asp-for="To2" type="time" class="form-control" />
+            <span asp-validation-for="To2" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="DentistId" class="form-label"></label>
+            @Html.DropDownList("DentistId", (SelectList)ViewData["DentistId"], "Select Dentist", new { @class = "form-control" })
+            <span asp-validation-for="DentistId" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-4">
+            <input type="submit" value="Save" class="btn btn-primary" />
+            <a asp-action="AdminIndex" asp-controller="OpeningHours" class="btn btn-secondary ms-2">Cancel</a>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,13 @@
+﻿@model DentalAppointmentSystem.Models.Service
+@{
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+
+<h3>Are you sure you want to delete this service?</h3>
+<form asp-action="DeleteService" method="post">
+        <input type="hidden" name="_method" value="DELETE" />
+    <input type="hidden" asp-for="ID" />
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a asp-action="AdminIndex" asp-controller="Service" class="btn btn-secondary">Back to AdminIndex</a> <!-- زر العودة إلى AdminIndex -->
+</form>

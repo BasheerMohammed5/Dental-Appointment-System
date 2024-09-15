@@ -1,0 +1,95 @@
+﻿@model DentalAppointmentSystem.Models.Dentist
+@{
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-4">Add New Dentist</h2>
+
+    <form asp-controller="Dentist" asp-action="Create" method="post" enctype="multipart/form-data">
+        @*     @Html.AntiForgeryToken() *@
+
+        <!-- Name Field -->
+        <div class="form-group mb-3">
+            <label asp-for="Name" class="form-label"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+
+        <!-- Specialization Field -->
+        <div class="form-group mb-3">
+            <label asp-for="Specialization" class="form-label"></label>
+            <input asp-for="Specialization" class="form-control" />
+            <span asp-validation-for="Specialization" class="text-danger"></span>
+        </div>
+
+        <!-- ServerId Dropdown -->
+        <div class="form-group mb-3">
+            <label asp-for="ServerId" class="form-label"></label>
+            @Html.DropDownList("ServerId", (SelectList)ViewData["ServerId"], "Select Server", new { @class = "form-control" })
+            <span asp-validation-for="ServerId" class="text-danger"></span>
+        </div>
+
+        <!-- Description Field -->
+        <div class="form-group mb-3">
+            <label asp-for="Description" class="form-label"></label>
+            <textarea asp-for="Description" class="form-control" rows="4"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+
+        <!-- Phone Field -->
+        <div class="form-group mb-3">
+            <label asp-for="Phone" class="form-label"></label>
+            <input asp-for="Phone" class="form-control" />
+            <span asp-validation-for="Phone" class="text-danger"></span>
+        </div>
+
+        <!-- Email Field -->
+        <div class="form-group mb-3">
+            <label asp-for="Email" class="form-label"></label>
+            <input asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+
+        <!-- Instagram Field -->
+        <div class="form-group mb-3">
+            <label asp-for="Instagram" class="form-label"></label>
+            <input asp-for="Instagram" class="form-control" />
+            <span asp-validation-for="Instagram" class="text-danger"></span>
+        </div>
+
+        <!-- LinkedIn Field -->
+        <div class="form-group mb-3">
+            <label asp-for="LinkedIn" class="form-label"></label>
+            <input asp-for="LinkedIn" class="form-control" />
+            <span asp-validation-for="LinkedIn" class="text-danger"></span>
+        </div>
+
+        <!-- Facebook Field -->
+        <div class="form-group mb-3">
+            <label asp-for="Facebook" class="form-label"></label>
+            <input asp-for="Facebook" class="form-control" />
+            <span asp-validation-for="Facebook" class="text-danger"></span>
+        </div>
+
+        <!-- X Field -->
+        <div class="form-group mb-3">
+            <label asp-for="X" class="form-label"></label>
+            <input asp-for="X" class="form-control" />
+            <span asp-validation-for="X" class="text-danger"></span>
+        </div>
+
+        <!-- Image Upload -->
+        <div class="form-group mb-3">
+            <label asp-for="Image" class="form-label"></label>
+            <input type="file" asp-for="Image" class="form-control" />
+            <span asp-validation-for="Image" class="text-danger"></span>
+        </div>
+
+        <!-- Submit and Back Buttons -->
+        <div class="form-group mb-4">
+            <button type="submit" class="btn btn-primary">Add Dentist</button>
+            <a asp-action="AdminIndex" asp-controller="Dentist" class="btn btn-secondary ms-2">Back to AdminIndex</a> <!-- زر العودة إلى AdminIndex -->
+        </div>
+    </form>
+</div>

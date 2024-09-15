@@ -1,0 +1,17 @@
+﻿@model DentalAppointmentSystem.Models.Testimonial
+@{
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<div class="container mt-4">
+    <h3 class="mb-4">Are you sure you want to delete this Testimonial?</h3>
+
+    <form asp-action="DeleteConfirmed" method="post">
+        @Html.AntiForgeryToken() <!-- تضمين توكن CSRF -->
+        <input type="hidden" name="_method" value="DELETE" />
+        <input type="hidden" asp-for="ID" />
+
+        <button type="submit" class="btn btn-danger">Delete</button>
+        <a asp-action="AdminIndex" asp-controller="Testimonial" class="btn btn-secondary ms-2">Back to AdminIndex</a> <!-- زر العودة إلى AdminIndex -->
+    </form>
+</div>

@@ -1,0 +1,51 @@
+﻿@model DentalAppointmentSystem.Models.Patient
+@{
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-4">Confirm Deletion</h2>
+
+    <div class="alert alert-warning">
+        <h4 class="alert-heading">Are you sure you want to delete this patient?</h4>
+        <p>This action cannot be undone. Once deleted, you will not be able to recover this record.</p>
+    </div>
+
+    <form asp-action="DeleteConfirmed" method="post">
+        @Html.AntiForgeryToken()
+        <input type="hidden" name="_method" value="DELETE" />
+        <input type="hidden" asp-for="ID" />
+
+        <div class="form-group mb-3">
+            <label class="form-label">Name:</label>
+            <p>@Model.Name</p>
+        </div>
+
+        <div class="form-group mb-3">
+            <label class="form-label">Phone:</label>
+            <p>@Model.Phone</p>
+        </div>
+
+        <div class="form-group mb-3">
+            <label class="form-label">Email:</label>
+            <p>@Model.Email</p>
+        </div>
+
+        <div class="form-group mb-3">
+            <label class="form-label">Date of Birth:</label>
+            <p>@Model.DateOfBirth.ToString("d")</p>
+        </div>
+
+        <div class="form-group mb-3">
+            <label class="form-label">Gender:</label>
+            <p>@Model.Gender</p>
+        </div>
+
+        <button type="submit" class="btn btn-danger">Delete</button>
+        <a asp-action="AdminIndex" asp-controller="Patient" class="btn btn-secondary ms-2">Back to AdminIndex</a> <!-- زر العودة إلى AdminIndex -->
+    </form>
+</div>
+
+@section Scripts {
+        <partial name="_ValidationScriptsPartial" />
+}

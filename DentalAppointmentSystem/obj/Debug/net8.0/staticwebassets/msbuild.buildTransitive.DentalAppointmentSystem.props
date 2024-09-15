@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\DentalAppointmentSystem.props" />
+</Project>

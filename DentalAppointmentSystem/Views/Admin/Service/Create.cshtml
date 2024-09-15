@@ -1,0 +1,58 @@
+﻿@model DentalAppointmentSystem.Models.Service
+@{
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="mb-0">Add New Service</h3>
+                </div>
+                <div class="card-body">
+                    <form asp-controller="Service" asp-action="Create" method="post" enctype="multipart/form-data">
+                        <div class="form-group row">
+                            <label asp-for="Name" class="col-sm-3 col-form-label">Service Name</label>
+                            <div class="col-sm-9">
+                                <input asp-for="Name" class="form-control" />
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row mt-3">
+                            <label asp-for="Description" class="col-sm-3 col-form-label">Description</label>
+                            <div class="col-sm-9">
+                                <textarea asp-for="Description" class="form-control" rows="4"></textarea>
+                                <span asp-validation-for="Description" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row mt-3">
+                            <label asp-for="Images" class="col-sm-3 col-form-label">Upload Images</label>
+                            <div class="col-sm-9">
+                                <input type="file" asp-for="Images" class="form-control-file" />
+                                <span asp-validation-for="Images" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row mt-3">
+                            <label asp-for="DurationInMinutes" class="col-sm-3 col-form-label">Duration (Minutes)</label>
+                            <div class="col-sm-9">
+                                <input asp-for="DurationInMinutes" class="form-control" />
+                                <span asp-validation-for="DurationInMinutes" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row mt-4">
+                            <div class="col-sm-12 text-center">
+                                <button type="submit" class="btn btn-success">Add Service</button>
+                                <a asp-action="AdminIndex" asp-controller="Service" class="btn btn-secondary ml-3">Back to AdminIndex</a> <!-- زر العودة إلى AdminIndex -->
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

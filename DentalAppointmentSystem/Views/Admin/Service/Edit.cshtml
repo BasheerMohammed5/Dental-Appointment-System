@@ -1,0 +1,83 @@
+﻿@model DentalAppointmentSystem.Models.Service
+@{
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg">
+                <div class="card-header bg-warning text-white">
+                    <h3 class="mb-0">Edit Service</h3>
+                </div>
+                <div class="card-body">
+
+                    <form asp-action="EditService" asp-controller="Service" method="post">
+    <input type="hidden" name="_method" value="PUT" />
+                        @Html.AntiForgeryToken()
+    <input type="hidden" asp-for="ID" />
+
+                        <div class="form-group row">
+                            <label asp-for="Name" class="col-sm-3 col-form-label">Service Name</label>
+                            <div class="col-sm-9">
+                                <input asp-for="Name" class="form-control" />
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row mt-3">
+                            <label asp-for="Description" class="col-sm-3 col-form-label">Description</label>
+                            <div class="col-sm-9">
+                                <textarea asp-for="Description" class="form-control" rows="4"></textarea>
+                                <span asp-validation-for="Description" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row mt-3">
+                            <label asp-for="DurationInMinutes" class="col-sm-3 col-form-label">Duration (Minutes)</label>
+                            <div class="col-sm-9">
+                                <input asp-for="DurationInMinutes" class="form-control" />
+                                <span asp-validation-for="DurationInMinutes" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <!-- حقل رفع الصورة مع عرض الصورة السابقة -->
+                        <div class="form-group row mt-3">
+                            <label asp-for="Images" class="col-sm-3 col-form-label">Upload Image</label>
+                            <div class="col-sm-9">
+                                <div class="row">
+                                    <!-- حقل رفع الصورة -->
+                                    <div class="col-sm-6">
+                                        <input type="file" asp-for="Images" class="form-control-file" />
+                                        <span asp-validation-for="Images" class="text-danger"></span>
+                                    </div>
+
+                                    <!-- مساحة لعرض الصورة السابقة -->
+                                    <div class="col-sm-6">
+                                        @if (!string.IsNullOrEmpty(Model.Images))
+                                        {
+                                                <div class="img-preview mt-2">
+                                                    <img src="@Url.Content("~/img/" + Model.Images)" class="img-thumbnail" style="max-width: 100%; height: auto;" alt="Previous Image" />
+                                                </div>
+                                        }
+                                        else
+                                        {
+                                                <div class="text-muted mt-2">No previous image</div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row mt-4">
+        <div class="col-sm-12 text-center">
+            <button type="submit" class="btn btn-success">Update Service</button>
+            <a asp-action="AdminIndex" asp-controller="Service" class="btn btn-secondary ml-3">Back to AdminIndex</a>
+        </div>
+    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,81 @@
+﻿@model IEnumerable<DentalAppointmentSystem.Models.Dentist>
+
+@{
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+    ViewData["Title"] = "Dentists";
+    var query = ViewData["Query"] as string;
+}
+
+<div class="container mt-4">
+    <h2 class="mb-4">@ViewData["Title"]</h2>
+
+    <!-- Search Bar -->
+    <form asp-action="Dashboard" method="get" class="mb-4">
+        <div class="input-group">
+            <input type="text" name="query" class="form-control" placeholder="Search..." value="@query" />
+            <button class="btn btn-primary ms-2" type="submit">Search</button>
+        </div>
+    </form>
+
+    <!-- Add New Button -->
+    <a asp-controller="Dentist" asp-action="Create" class="btn btn-success mb-4">
+        <i class="fas fa-plus"></i> Add New
+    </a>
+
+    <!-- Table for Displaying Data -->
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Name</th>
+                    <th>Specialization</th>
+                    <th>Server</th>
+                    <th>Description</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Instagram</th>
+                    <th>LinkedIn</th>
+                    <th>Facebook</th>
+                    <th>X</th>
+                    <th>Image</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                        <tr>
+                            <td>@item.Name</td>
+                            <td>@item.Specialization</td>
+                            <td>@item.Server</td>
+                            <td>@item.Description</td>
+                            <td>@item.Phone</td>
+                            <td>@item.Email</td>
+                            <td>@item.Instagram</td>
+                            <td>@item.LinkedIn</td>
+                            <td>@item.Facebook</td>
+                            <td>@item.X</td>
+                            <td>
+                            @if (!string.IsNullOrEmpty(item.Image))
+                            {
+                                        <img src="@Url.Content("~/img/" + item.Image)" alt="@item.Name" class="img-thumbnail" style="width: 100px; height: 100px;" />
+                            }
+                            else
+                            {
+                                        <span class="text-muted">No Image</span>
+                            }
+                            </td>
+                            <td>
+                                <a asp-action="EditDentist" asp-route-id="@item.ID" class="btn btn-warning btn-sm">
+                                    <i class="fas fa-edit"></i> Edit
+                                </a>
+                                <a asp-action="DeleteDentist" asp-route-id="@item.ID" class="btn btn-danger btn-sm ms-2">
+                                    <i class="fas fa-trash"></i> Delete
+                                </a>
+                            </td>
+                        </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
